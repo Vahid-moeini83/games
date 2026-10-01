@@ -1,0 +1,292 @@
+:root {
+  --bg-1: #ff6fb5;
+  --bg-2: #7b5cff;
+  --bg-3: #ffc93c;
+  --panel: #ffffff;
+  --card: #f6f3ff;
+  --ink: #2b1e4a;
+  --muted: #8b7fa8;
+  --violet: #7b5cff;
+  --violet-soft: #ede8ff;
+  --pink: #ff5da2;
+  --pink-soft: #ffe3f0;
+  --teal: #16c79a;
+  --teal-soft: #dffbf2;
+  --yellow: #ffc93c;
+  --border: #e8e0ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  font-family: "Vazirmatn";
+  color: var(--ink);
+  background: linear-gradient(
+    135deg,
+    var(--bg-1) 0%,
+    var(--bg-2) 55%,
+    #4a3ac7 100%
+  );
+  background-attachment: fixed;
+}
+
+.console {
+  width: 100%;
+  max-width: 520px;
+  background: var(--panel);
+  border-radius: 28px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 30px 60px -20px rgba(40, 20, 90, 0.45);
+}
+
+/* Header */
+.console-header {
+  text-align: center;
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 3px dashed var(--border);
+}
+
+.tag {
+  display: inline-block;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--violet);
+  background: var(--violet-soft);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+
+.console-header h1 {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.stat {
+  flex: 1;
+  border-radius: 16px;
+  padding: 14px 8px;
+  text-align: center;
+  border: 2px solid var(--border);
+}
+
+.stat-playing {
+  background: var(--pink-soft);
+  border-color: #ffcbe3;
+}
+.stat-done {
+  background: var(--teal-soft);
+  border-color: #bff1e1;
+}
+.stat-total {
+  background: var(--violet-soft);
+  border-color: #dcd2ff;
+}
+
+.stat-num {
+  display: block;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stat-playing .stat-num {
+  color: var(--pink);
+}
+.stat-done .stat-num {
+  color: var(--teal);
+}
+.stat-total .stat-num {
+  color: var(--violet);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Add row */
+.add-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.js-game-input {
+  flex: 1;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.js-game-input::placeholder {
+  color: var(--muted);
+}
+
+.js-game-input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 4px var(--violet-soft);
+}
+
+.add-btn {
+  background: var(--violet);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 0 24px;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease;
+}
+
+.add-btn:hover {
+  background: #6a4ae8;
+}
+
+.add-btn:active {
+  transform: scale(0.94);
+}
+
+/* Game list */
+.game-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  transition: transform 0.12s ease;
+}
+
+.game-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.status-pill {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 2px solid var(--pink);
+  color: var(--pink);
+  background: var(--pink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.status-pill:hover {
+  transform: scale(1.05);
+}
+
+/* completed state, toggled via JS by adding this class */
+.game-card.completed {
+  background: var(--teal-soft);
+  border-color: #bff1e1;
+}
+
+.game-card.completed .status-pill {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: white;
+}
+
+.game-card.completed .game-name {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 10px;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.delete-btn:hover {
+  color: #ff4b6e;
+  background: #ffe0e6;
+  transform: scale(1.1);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 30px 0 6px;
+}
+
+/* Utility class expected from JS: hidden */
+.hidden {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
